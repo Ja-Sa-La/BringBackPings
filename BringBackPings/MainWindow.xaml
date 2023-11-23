@@ -1,0 +1,150 @@
+﻿<Window
+    WindowStyle="None"
+    x:Class="BringBackPings.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ui="http://schemas.modernwpf.com/2019"
+
+    Title="MainWindow"
+    Deactivated="MainWindow_OnDeactivated"
+    AllowsTransparency="True"
+    Background="#7F000000" MouseLeftButtonDown="MoveStuff" Foreground="White"
+    Focusable="False" SizeToContent="WidthAndHeight" Width="772">
+
+    <Grid x:Name="RootMainGrid" Margin="10,0,10,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="0,2,0,3" HorizontalAlignment="Left" Width="730">
+            <Label Content="Status: league not running" Name="leagueStatus" Margin="10,10,0,10"
+                   HorizontalAlignment="Left"
+                   Width="auto" />
+            <RadioButton GroupName="ChatToUse" Name="TeamChatButton" IsChecked="True" VerticalContentAlignment="Top"
+                         FontSize="10" Margin="5,0,0,0" MinWidth="80" Checked="EnableTeamChat">
+                <Label Content="Team Chat" />
+            </RadioButton>
+            <RadioButton GroupName="ChatToUse" Name="ALLChatButton" VerticalContentAlignment="Top" FontSize="10"
+                         Margin="5,0,0,0" MinWidth="80" Checked="EnableALLChat">
+                <Label Content="ALL Chat" />
+            </RadioButton>
+            <Button Content="Send Clipboard" Opacity="0.6" Margin="5,0,0,0" RenderTransformOrigin="0.779,0.489"
+                    Width="115" Click="SendClipboard" />
+        </StackPanel>
+
+        <ui:TitleBarButton Grid.Row="0" HorizontalAlignment="Right" Margin="0,4,10,3" Width="46" Foreground="White"
+                           Content="X" FontSize="15" FontFamily="Arial" Click="Exit" />
+        <!-- Team ORDER -->
+        <DataGrid Grid.Row="1" BorderBrush="White" BorderThickness="1" Name="teamOrderDataGrid" Margin="10,10,10,10"
+                  AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
+                  SelectionUnit="Cell" SelectedCellsChanged="PingData" CanUserResizeColumns="False"
+                  CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeRows="False"
+                  CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Champion" Binding="{Binding ChampionName}" Width="Auto" />
+                <DataGridTextColumn Header="Summoner Name" Binding="{Binding SummonerName}" Width="Auto" />
+                <DataGridTextColumn Header="Level" Binding="{Binding Level}" Width="Auto" />
+                <DataGridTextColumn Header="Total inventory" Binding="{Binding TotalItemCost}" Width="Auto" />
+                <DataGridTextColumn Header="Dead" Binding="{Binding IsDead}" Width="Auto" />
+                <DataGridTextColumn Header="Respawn time" Binding="{Binding respawnTimer}" Width="Auto" />
+                <DataGridTextColumn Header="Summoner Spell D"
+                                    Binding="{Binding SummonerSpells.SummonerSpellOne.DisplayName}" Width="Auto" />
+                <DataGridTextColumn Header="set CD D"
+                                    Binding="{Binding SummonerSpells.SummonerSpellOne.CD}" Width="Auto" />
+                <DataGridTextColumn Header="Summoner Spell F"
+                                    Binding="{Binding SummonerSpells.SummonerSpellTwo.DisplayName}" Width="Auto" />
+                <DataGridTextColumn Header="set CD F"
+                                    Binding="{Binding SummonerSpells.SummonerSpellTwo.CD}" Width="Auto" />
+                <DataGridTextColumn Header="Passive" Binding="{Binding P}" Width="Auto" />
+                <DataGridTextColumn Header="Q Ability" Binding="{Binding Q}" Width="Auto" />
+                <DataGridTextColumn Header="W Ability" Binding="{Binding W}" Width="Auto" />
+                <DataGridTextColumn Header="E Ability" Binding="{Binding E}" Width="Auto" />
+                <DataGridTextColumn Header="R Ability" Binding="{Binding R}" Width="Auto" />
+
+            </DataGrid.Columns>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="DataGridCell">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Opacity="1">
+                                    <!-- Set the default opacity here -->
+                                    <ContentPresenter />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="LightGray" />
+                            <Setter Property="Opacity" Value="0.8" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
+
+        <!-- Team CHAOS -->
+        <DataGrid Grid.Row="2" BorderBrush="White" BorderThickness="1" Name="teamChaosDataGrid" Margin="10,10,10,10"
+                  AutoGenerateColumns="False" IsReadOnly="True" SelectionMode="Single"
+                  SelectionUnit="Cell" SelectedCellsChanged="PingData" CanUserResizeColumns="False"
+                  CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeRows="False"
+                  CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Champion" Binding="{Binding ChampionName}" Width="Auto" />
+                <DataGridTextColumn Header="Summoner Name" Binding="{Binding SummonerName}" Width="Auto" />
+                <DataGridTextColumn Header="Level" Binding="{Binding Level}" Width="Auto" />
+                <DataGridTextColumn Header="Total inventory" Binding="{Binding TotalItemCost}" Width="Auto" />
+                <DataGridTextColumn Header="Dead" Binding="{Binding IsDead}" Width="Auto" />
+                <DataGridTextColumn Header="Respawn time" Binding="{Binding respawnTimer}" Width="Auto" />
+                <DataGridTextColumn Header="Summoner Spell D"
+                                    Binding="{Binding SummonerSpells.SummonerSpellOne.DisplayName}" Width="Auto" />
+                <DataGridTextColumn Header="set CD D"
+                                    Binding="{Binding SummonerSpells.SummonerSpellOne.CD}" Width="Auto" />
+                <DataGridTextColumn Header="Summoner Spell F"
+                                    Binding="{Binding SummonerSpells.SummonerSpellTwo.DisplayName}" Width="Auto" />
+                <DataGridTextColumn Header="set CD F"
+                                    Binding="{Binding SummonerSpells.SummonerSpellTwo.CD}" Width="Auto" />
+                <DataGridTextColumn Header="Passive" Binding="{Binding P}" Width="Auto" />
+                <DataGridTextColumn Header="Q Ability" Binding="{Binding Q}" Width="Auto" />
+                <DataGridTextColumn Header="W Ability" Binding="{Binding W}" Width="Auto" />
+                <DataGridTextColumn Header="E Ability" Binding="{Binding E}" Width="Auto" />
+                <DataGridTextColumn Header="R Ability" Binding="{Binding R}" Width="Auto" />
+            </DataGrid.Columns>
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="DataGridCell">
+                                <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Opacity="1">
+                                    <!-- Set the default opacity here -->
+                                    <ContentPresenter />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="LightGray" />
+                            <Setter Property="Opacity" Value="0.8" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+        </DataGrid>
+
+    </Grid>
+
+</Window>

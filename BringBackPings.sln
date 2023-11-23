@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BringBackPings", "BringBackPings\BringBackPings.csproj", "{121D1B29-2662-4BDD-B397-6108270486BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{086F2835-9D0B-4AF3-8FDE-42490CAAB11D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{121D1B29-2662-4BDD-B397-6108270486BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{121D1B29-2662-4BDD-B397-6108270486BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{121D1B29-2662-4BDD-B397-6108270486BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{121D1B29-2662-4BDD-B397-6108270486BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A659A59B-756F-46C8-AA1A-FDEDE2584D1A}
+	EndGlobalSection
+EndGlobal
